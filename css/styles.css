@@ -1,0 +1,9 @@
+div{
+    display: inline;
+    border: 5px solid blue;
+    margin: 50px 10px;
+    padding: 40px 10px
+}
+h1 {
+    text-align: center;
+}
