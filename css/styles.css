@@ -1,4 +1,4 @@
-div{
+#card1, #card2, #card3, #card4, #card5{
     display: inline;
     border: 5px solid blue;
     margin: 50px 10px;
@@ -6,4 +6,17 @@ div{
 }
 h1 {
     text-align: center;
+}
+#message1, #message2, #message3, #message4, #message5 {
+    display: inline;
+    margin-right: 50px;
+    border: 2px solid red;
+}
+
+.m1 {
+    margin-top: 50px;
+}
+
+button {
+    margin: 10px;
 }
