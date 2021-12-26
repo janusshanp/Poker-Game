@@ -8,7 +8,6 @@ h1 {
     text-align: center;
 }
 #message1, #message2, #message3, #message4, #message5 {
-    display: inline;
     margin-right: 50px;
     border: 2px solid red;
 }
