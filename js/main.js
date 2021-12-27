@@ -17,14 +17,14 @@ let displayCards = {
 let init = {
     cardDeck: [],
     cardsDrawn:[],
-    totalBet: 100,
+    totalBet: prompt("Enter Total Bet:"),
     createDeck: function () {
-        cardValues.forEach(value => suits.forEach(suit => init.cardDeck.push(value.concat(suit))))
+        suits.forEach(suit => cardValues.forEach(value => init.cardDeck.push(suit.concat(value))))
       }
 }
 
 /*---------cached element references---------*/
-let cardC = document.querySelectorAll('.container')
+let cardC = document.querySelectorAll('.card')
 //do I need all these values? 
 let cardOne = document.querySelector('#card1')
 let cardTwo = document.querySelector('#card2')
@@ -71,9 +71,8 @@ function chooseCards () {
         if (displayCards[cards].selected === false){
             let rInt = Math.floor(Math.random()*init.cardDeck.length)
             displayCards[cards].card = init.cardDeck[rInt]
-            cardC[i].textContent = displayCards[cards].card
+            cardC[i].classList.add(init.cardDeck[rInt])
             init.cardDeck.splice(rInt,1)
-            console.log(displayCards[cards].card)
         } i++
     }
 }
@@ -105,8 +104,8 @@ function checkCards () {
     finalCards.sort()
     //loop to seperate out the suits and values 
     for (card of finalCards) {
-        finalCardsValues.push(parseInt(card[0]+card[1]))
-        finalCardsSuits.push(card[2])
+        finalCardsValues.push(parseInt(card[1]+card[2]))
+        finalCardsSuits.push(card[0])
     }
     
     //to tally up how many of a suit we have 
@@ -137,13 +136,14 @@ function checkCards () {
         }
         if (numberTally[num]===2 && twoPair1 === false){
           twoPair1 = true
-          continue
+          if (num == 11 || num == 12 || num == 13 || num == 14) {
+            jacksorBetter = true
+            }
+        continue
         }
         if (numberTally[num]===2){
           twoPair2 = true
         }
-        if (num == 11 || num == 12 || num == 13 || num == 14) {
-            jacksorBetter = true
     }
     // to see if cards are in order 
     for (let i =0; i < 4; i ++){
@@ -174,4 +174,4 @@ function checkCards () {
       } else if (twoPair1 && jacksorBetter){
         console.log("Jacks or better")
       }
-}}
+}
