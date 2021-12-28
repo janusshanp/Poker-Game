@@ -67,23 +67,32 @@ function createEventListeners () {
   }
 }
 
-dealButton.addEventListener("click", function(e){
-    if (init.cardDeck.length == 0){
-        init.createDeck ()
-        init.currentBetInput ()
-        createEventListeners ()
-        chooseCards()
-        checkCards()
-    } else if (init.currentBet !== 0){
-        chooseCards()
-        checkCards()
-        totalBet ()
-    } else if (init.currentBet === 0){
-        resetCards ()
-    }  
-})
+dealButton.addEventListener("click", mainGame) 
 
 /*---------functions---------*/ 
+function mainGame () {
+  console.log("i clicked!")
+  if (init.cardDeck.length == 0){
+    console.log("1dfsd")
+    init.createDeck ()
+    init.currentBetInput ()
+    createEventListeners ()
+    chooseCards()
+    checkCards()
+  } else if (init.currentBet !== 0){
+    console.log("Hello")
+    chooseCards()
+    checkCards()
+    totalBet ()
+  } else if (init.currentBet === 0){
+    console.log("3o")
+    resetCards ()
+    mainGame () 
+}
+}
+
+// dealButton.addEventListener("click", mainGame()) 
+
 function resetCards () {
   let i = 0 
   for (cards in displayCards) {
@@ -94,6 +103,7 @@ function resetCards () {
     i++
   }
   init.cardDeck = []
+  win = 0 
 }
 
 function totalBet () {
@@ -230,5 +240,6 @@ function checkCards () {
         win = 1
       } else {
         winMessage.textContent = "Keep Trying!"
+        win = 0
       }
 }
