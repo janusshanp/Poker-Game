@@ -6,6 +6,8 @@ let cardValues = ['02','03','04','05','06','07','08','09','10','11','12','13','1
 
 //change so that it can have an input
 
+let win = 0
+
 let displayCards = {
     card1: { card:"", selected: false },
     card2: { card:"", selected: false },
@@ -14,67 +16,108 @@ let displayCards = {
     card5: { card:"", selected: false }
 }
 
+//change this location when you clean up your code 
+let betCredits = document.querySelector('.credits')
+let betDisplay = document.querySelector('.bet')
+
 let init = {
     cardDeck: [],
-    cardsDrawn:[],
-    totalBet: prompt("Enter Total Bet:"),
+    totalCredits: 0,
+    currentBet: 0,    
+    betInput: function () {
+      init.totalCredits = prompt("Enter Total Bet:")
+      betCredits.textContent = "Total Credits: "+ init.totalCredits
+    },
+    currentBetInput: function () {
+      init.currentBet = prompt("Enter How much you want to bet now:")
+      betDisplay.textContent = "Current Bet: " + init.currentBet
+      init.totalCredits = init.totalCredits - init.currentBet
+      betCredits.textContent = "Total Credits: "+ init.totalCredits      
+    },
     createDeck: function () {
         suits.forEach(suit => cardValues.forEach(value => init.cardDeck.push(suit.concat(value))))
       }
 }
 
+init.betInput();
+
 /*---------cached element references---------*/
 let cardC = document.querySelectorAll('.card')
-//do I need all these values? 
-let cardOne = document.querySelector('#card1')
-let cardTwo = document.querySelector('#card2')
-let cardThree = document.querySelector('#card3')
-let cardFour = document.querySelector('#card4')
-let cardFive = document.querySelector('#card5')
-//since I have a loop for the container? 
 let dealButton = document.querySelector('#Deal')
 let messageC = document.querySelectorAll('.message')
-let message1 = document.querySelector('#message1')
-let message2 = document.querySelector('#message2')
-let message3 = document.querySelector('#message3')
-let message4 = document.querySelector('#message4')
-let message5 = document.querySelector('#message5')
+let winMessage = document.querySelector('h2')
+
+
 
 /*---------event listener---------*/
-cardOne.addEventListener("click", function(e) {
-    //need to make this a boolean so that i can unclick it
-    cardOne.setAttribute("selected",'')
-    displayCards.card1.selected = true
-    message1.textContent = "Hold"
-})
+
+function createEventListeners () {
+  for (let i = 0; i < cardC.length; i++){
+    cardC[i].addEventListener("click", function(e) {
+      let cardID = 'card'+[i+1]
+      if (displayCards[cardID].selected){
+        displayCards[cardID].selected = false
+        messageC[i].textContent ="Not Held"
+      } else {
+        displayCards[cardID].selected = true
+        messageC[i].textContent ="Hold"
+      }
+      console.log("clicked")
+    })
+  }
+}
 
 dealButton.addEventListener("click", function(e){
     if (init.cardDeck.length == 0){
         init.createDeck ()
+        init.currentBetInput ()
+        createEventListeners ()
         chooseCards()
         checkCards()
-    } else if (init.cardDeck.length > 0){
+    } else if (init.currentBet !== 0){
         chooseCards()
         checkCards()
-    } else {
-        console.log('end')
-    }
-       
+        totalBet ()
+    } else if (init.currentBet === 0){
+        resetCards ()
+    }  
 })
 
 /*---------functions---------*/ 
+function resetCards () {
+  let i = 0 
+  for (cards in displayCards) {
+    cardC[i].classList.remove(displayCards[cards].card)
+    displayCards[cards].card = ""
+    displayCards[cards].selected = false
+    messageC[i].textContent = ""
+    i++
+  }
+  init.cardDeck = []
+}
+
+function totalBet () {
+  init.totalCredits = init.totalCredits + (win * init.currentBet)
+  betCredits.textContent = "Total Credits: " + init.totalCredits
+  betDisplay.textContent = "Current Bet: 0" 
+  init.currentBet = 0 
+}
+
 
 //need to figure out how to stop duplicate cards in dealing  
 function chooseCards () {
     let i = 0
     for (cards in displayCards){
         if (displayCards[cards].selected === false){
-            let rInt = Math.floor(Math.random()*init.cardDeck.length)
-            displayCards[cards].card = init.cardDeck[rInt]
-            cardC[i].classList.add(init.cardDeck[rInt])
-            init.cardDeck.splice(rInt,1)
-        } i++
-    }
+          if (displayCards[cards].card !== ''){
+            cardC[i].classList.remove(displayCards[cards].card)
+          }
+        let rInt = Math.floor(Math.random()*init.cardDeck.length)
+        displayCards[cards].card = init.cardDeck[rInt]
+        cardC[i].classList.add(init.cardDeck[rInt])
+        init.cardDeck.splice(rInt,1)
+    } i++
+  }
 }
 
 function checkCards () {
@@ -109,6 +152,9 @@ function checkCards () {
     }
     
     //to tally up how many of a suit we have 
+    console.log(finalCardsSuits)
+    console.log(finalCardsValues)
+
     let suitTally = finalCardsSuits.reduce(function(acc,suit){
         acc[suit] = acc[suit] ? acc[suit] +1 : 1;
         return acc;
@@ -156,22 +202,33 @@ function checkCards () {
     }
 
     if (valuesinOrder && fiveSuits && Math.min(...finalCardsValues)===10){
-        console.log("Royal Flush") 
+        winMessage.textContent = "Royal Flush" 
+        win = 250
       } else if (valuesinOrder && fiveSuits) {
-        console.log("Straight Flush") 
+        winMessage.textContent = "Straight Flush"
+        win = 50 
       } else if (fourPair){
-        console.log("Four Pair")
+        winMessage.textContent = "Four Pair"
+        win = 25
       } else if (threePair && twoPair1){
-        console.log("Full House")
+        winMessage.textContent = "Full House"
+        win = 9
       } else if (fiveSuits){
-        console.log("Flush")
+        winMessage.textContent = "Flush"
+        win = 6
       } else if (valuesinOrder){
-        console.log("Straight")
+        winMessage.textContent = "Straight"
+        win = 4
       } else if (threePair){
-        console.log("Three Pair")
+        winMessage.textContent = "Three Pair"
+        win = 3
       } else if (twoPair1 && twoPair2){
-        console.log("Two Pair")
+        winMessage.textContent = "Two Pair"
+        win = 2
       } else if (twoPair1 && jacksorBetter){
-        console.log("Jacks or better")
+        winMessage.textContent = "Jacks or better"
+        win = 1
+      } else {
+        winMessage.textContent = "Keep Trying!"
       }
 }
