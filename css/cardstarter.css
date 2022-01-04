@@ -1,11 +1,11 @@
 .card {
   box-sizing: border-box;
   display: inline-block;
-  margin: 5px 5px 50px 5px;
+  margin: 5px 5px 5px 5px;
   cursor: pointer;
   /* Set the card's dimensions, and size it relative to
      it's font size. */
-  font-size: inherit;
+  font-size: 30px;
   width: 4.0em;
   height: 5.5em;
   /* Add a default background color and border. */
@@ -25,7 +25,9 @@
   /* Optional styles for cards: borderless and drop shadow. */
   /* Not a card, but a card-shaped outline to represent a
      droppable place, like an empty pile. */ }
-  .card.small {
+
+
+  /* .card.small {
     font-size: 12px; }
   .card.large {
     font-size: 26px; }
@@ -38,7 +40,7 @@
   .card.outline {
     background-image: none;
     background-color: rgba(195, 195, 195, 0.5);
-    border: 0.15em dashed #daa520; }
+    border: 0.15em dashed #daa520; } */
 
 .card.D14 
  {
@@ -211,7 +213,9 @@
    them correctly in case text or other symbols are
    layered on them with CSS pseudo-selectors, new
    classes/rules, etc. */
-.card.west,
+
+
+/* .card.west,
 .card.W {
   transform: rotate(90deg);
   margin: auto 0.75em; }
@@ -232,4 +236,4 @@
   margin: auto 0.75em; }
   .card.east.shadow,
   .card.E.shadow {
-    box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
+    box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); } */

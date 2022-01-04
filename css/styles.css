@@ -1,0 +1,22 @@
+h1,h2 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.mcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    display: inline-block;
+    margin: 0px 40px 0px 40px;
+}
+
+.master-container {
+    background-color: lightblue;
+}

@@ -85,7 +85,7 @@ function mainGame () {
     checkCards()
     totalBet ()
   } else if (init.currentBet === 0){
-    console.log("3o")
+    console.log("ibanma")
     resetCards ()
     mainGame () 
 }
