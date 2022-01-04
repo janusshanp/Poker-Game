@@ -1,6 +1,7 @@
 /*---------constants---------*/
 let suits = ['H','S','D','C']
 let cardValues = ['02','03','04','05','06','07','08','09','10','11','12','13','14']
+var firstPlay = false 
 
 /*---------app's state (variables)---------*/
 
@@ -76,7 +77,10 @@ function mainGame () {
     console.log("1dfsd")
     init.createDeck ()
     init.currentBetInput ()
-    createEventListeners ()
+    if (!firstPlay){
+      createEventListeners ()
+      firstPlay = true
+    }
     chooseCards()
     checkCards()
   } else if (init.currentBet !== 0){
