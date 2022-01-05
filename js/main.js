@@ -1,12 +1,13 @@
 /*---------constants---------*/
 let suits = ['H','S','D','C']
 let cardValues = ['02','03','04','05','06','07','08','09','10','11','12','13','14']
-var firstPlay = false 
+
 
 /*---------app's state (variables)---------*/
 
 //change so that it can have an input
-
+var firstPlay = false 
+var secondDeal = false 
 let win = 0
 
 let displayCards = {
@@ -18,19 +19,17 @@ let displayCards = {
 }
 
 //change this location when you clean up your code 
-let betCredits = document.querySelector('.credits')
-let betDisplay = document.querySelector('.bet')
+let betCredits = document.querySelector('.credits span')
 
 let init = {
     cardDeck: [],
     totalCredits: 0,
     currentBet: 0,    
     betInput: function () {
-      init.totalCredits = prompt("Enter Total Bet:")
-      betCredits.textContent = "Total Credits: "+ init.totalCredits
+      init.totalCredits = prompt("Enter Total Credits:")
+      betCredits.textContent = init.totalCredits
     },
     currentBetInput: function () {
-      init.currentBet = prompt("Enter How much you want to bet now:")
       betDisplay.textContent = "Current Bet: " + init.currentBet
       init.totalCredits = init.totalCredits - init.currentBet
       betCredits.textContent = "Total Credits: "+ init.totalCredits      
@@ -47,7 +46,9 @@ let cardC = document.querySelectorAll('.card')
 let dealButton = document.querySelector('#Deal')
 let messageC = document.querySelectorAll('.message')
 let winMessage = document.querySelector('h2')
-
+let betNum = document.querySelector('.bet span')
+let betUpButton = document.querySelector('#B-up')
+let betDownButton = document.querySelector('#B-down')
 
 
 /*---------event listener---------*/
@@ -56,6 +57,9 @@ function createEventListeners () {
   for (let i = 0; i < cardC.length; i++){
     cardC[i].addEventListener("click", function(e) {
       let cardID = 'card'+[i+1]
+      if(secondDeal){
+        return
+      } 
       if (displayCards[cardID].selected){
         displayCards[cardID].selected = false
         messageC[i].textContent ="Not Held"
@@ -70,32 +74,67 @@ function createEventListeners () {
 
 dealButton.addEventListener("click", mainGame) 
 
+betUpButton.addEventListener("click", betFunction)
+betDownButton.addEventListener("click",betFunction)
+
+
 /*---------functions---------*/ 
+function betFunction(e) {
+  if(e.target.id == 'B-up'){
+    init.currentBet++
+    init.totalCredits--
+  }else if(e.target.id == 'B-down'){
+    init.currentBet--
+    init.totalCredits++
+  }
+  betNum.textContent = init.currentBet
+  betCredits.textContent = init.totalCredits
+}
+
 function mainGame () {
+  var time = 0
   console.log("i clicked!")
+  if (!firstPlay){
+    createEventListeners ()
+    firstPlay = true
+  }
   if (init.cardDeck.length == 0){
     console.log("1dfsd")
     init.createDeck ()
-    init.currentBetInput ()
-    if (!firstPlay){
-      createEventListeners ()
-      firstPlay = true
+    var interval = setInterval(function() {
+    if(time<=4){
+      chooseCards(time)
+      time++;
     }
-    chooseCards()
-    checkCards()
-  } else if (init.currentBet !== 0){
-    console.log("Hello")
-    chooseCards()
-    checkCards()
-    totalBet ()
-  } else if (init.currentBet === 0){
-    console.log("ibanma")
-    resetCards ()
-    mainGame () 
+    else {
+      checkCards()
+      clearInterval(interval)
+    }
+    },500)
+    betUpButton.disabled = true
+    betDownButton.disabled =true 
+  } else if (betUpButton.disabled && betDownButton.disabled){
+      console.log("Hello")
+      secondDeal = true
+      var interval = setInterval(function() {
+        if(time<=4) {
+          chooseCards(time)
+          time++
+        }
+        else {
+          checkCards()
+          clearInterval(interval)
+          totalBet()
+        }
+      },500) 
+      betUpButton.disabled = false
+      betDownButton.disabled = false
+  } else if (secondDeal){
+      console.log("ibanma")
+      resetCards ()
+      mainGame () 
 }
 }
-
-// dealButton.addEventListener("click", mainGame()) 
 
 function resetCards () {
   let i = 0 
@@ -108,29 +147,29 @@ function resetCards () {
   }
   init.cardDeck = []
   win = 0 
+  secondDeal = false 
 }
 
 function totalBet () {
   init.totalCredits = init.totalCredits + (win * init.currentBet)
-  betCredits.textContent = "Total Credits: " + init.totalCredits
-  betDisplay.textContent = "Current Bet: 0" 
+  betCredits.textContent = init.totalCredits
+  betNum.textContent = 0 
   init.currentBet = 0 
 }
 
-
 //need to figure out how to stop duplicate cards in dealing  
-function chooseCards () {
-    let i = 0
-    for (cards in displayCards){
-        if (displayCards[cards].selected === false){
-          if (displayCards[cards].card !== ''){
-            cardC[i].classList.remove(displayCards[cards].card)
-          }
-        let rInt = Math.floor(Math.random()*init.cardDeck.length)
-        displayCards[cards].card = init.cardDeck[rInt]
-        cardC[i].classList.add(init.cardDeck[rInt])
-        init.cardDeck.splice(rInt,1)
-    } i++
+function chooseCards (time) {
+  let cardID = 'card' + (time+1)
+  console.log(cardID)
+  cardC[time].classList.remove("back-blue")
+  if (displayCards[cardID].selected === false){
+    if (displayCards[cardID].card !== ''){
+    cardC[time].classList.remove(displayCards[cardID].card)
+    }
+    let rInt = Math.floor(Math.random()*init.cardDeck.length)
+    displayCards[cardID].card = init.cardDeck[rInt]
+    cardC[time].classList.add(init.cardDeck[rInt])
+    init.cardDeck.splice(rInt,1)
   }
 }
 
@@ -165,6 +204,8 @@ function checkCards () {
         finalCardsSuits.push(card[0])
     }
     
+    finalCardsValues.sort((function(a,b){return a-b}))
+
     //to tally up how many of a suit we have 
     console.log(finalCardsSuits)
     console.log(finalCardsValues)
@@ -243,7 +284,7 @@ function checkCards () {
         winMessage.textContent = "Jacks or better"
         win = 1
       } else {
-        winMessage.textContent = "Keep Trying!"
+        winMessage.textContent = "No Winning Combinations"
         win = 0
       }
 }
