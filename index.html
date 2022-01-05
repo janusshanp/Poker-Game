@@ -7,45 +7,44 @@
     <title>Video Poker</title>
     <link rel="stylesheet" href="css/cardstarter.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/main.js"></script>
+    <!-- <script defer src="js/main.js"></script> -->
 </head>
 <body>
     <h1>Video Poker</h1>
     <br>
     <div class = "master-container">
-    <div class= "odds">
-        <div>Royal Flush.......<span>250</span></div>
-        <div>Straight Flush.....<span>50</span></div>
-        <div>Four of a Kind......<span>25</span></div>
-        <div>Full House.......<span>9</span></div>
-        <div>Flush.......<span>6</span></div>
-        <div>Straight........<span>4</span></div>
-        <div>Three of a Kind.........<span>3</span></div>
-        <div>Two Pair.......<span>2</span></div>
-        <div>Jacks or Better......<span>1</span></div>
-    </div>
-    <h2></h2>
-    <div class="mcontainer">
+        <div class= "odds">
+            <div>Winning Odds based on Current Bet</div>
+            <div>Royal Flush..................................................<span>250</span></div>
+            <div>Straight Flush.....<span>50</span></div>
+            <div>Four of a Kind......<span>25</span></div>
+            <div>Full House.......<span>9</span></div>
+            <div>Flush.......<span>6</span></div>
+            <div>Straight........<span>4</span></div>
+            <div>Three of a Kind.........<span>3</span></div>
+            <div>Two Pair.......<span>2</span></div>
+            <div>Jacks or Better......<span>1</span></div>
+        </div>
+        <div class="win-display">Jacks or Better!</div>
         <div class ="message" id="message1">XXXX</div>
         <div class ="message" id="message2">XXXX</div>
         <div class ="message" id="message3">XXXX</div>
         <div class ="message" id="message4">XXXX</div>
         <div class ="message" id="message5">XXXX</div>
-    </div>
-    <div class="container"> 
+        
         <div class ="card back-blue" id="card1"></div>
         <div class ="card back-blue" id="card2"></div>
         <div class ="card back-blue" id="card3"></div>
         <div class ="card back-blue" id="card4"></div>
         <div class ="card back-blue" id="card5"></div>
-    </div>
-    </div>
-    <div>
+        
         <div class ="credits">Total Credits: <span>0</span></div>
         <div class ="bet">Current Bet: <span>0</span></div>
+
     </div>
     <button id="B-up">Bet Up</button>
     <button id="B-down">Bet Down</button>
+    <button id="quit">Cash Out</button>
     <button id="Deal">Deal</button>
 </body>
 </html>

@@ -1,22 +1,56 @@
-h1,h2 {
+.odds{
+    grid-area: odds;
+
+}
+.win-display{
+    grid-area: win;
     text-align: center;
 }
-
-.container {
-    display: flex;
-    justify-content: center;
+#message1 {
+    grid-area: message1;
+}
+#message2 {
+    grid-area:message2;
+}
+#message3 {
+    grid-area:message3;
+}
+#message4 {
+    grid-area:message4;
+}
+#message5 {
+    grid-area:message5;
+}
+#card1{
+    grid-area: card1;
+}
+#card2{
+    grid-area: card2;
+}
+#card3{
+    grid-area: card3;
+}
+#card4{
+    grid-area: card4;
+}
+#card5{
+    grid-area: card5;
+}
+.bet {
+    grid-area: bet;
 }
 
-.mcontainer {
-    display: flex;
-    justify-content: center;
+.credits{
+    grid-area: credits;
 }
-
-.message {
-    display: inline-block;
-    margin: 0px 40px 0px 40px;
-}
-
-.master-container {
+.master-container{
     background-color: lightblue;
+    display:grid;
+    grid-template-areas:
+        ". odds odds odds ."
+        "win win win win win "
+        "message1 message2 message3 message4 message5"
+        "card1 card2 card3 card4 card5"
+        "bet bet bet credits credits "
+    ;
 }

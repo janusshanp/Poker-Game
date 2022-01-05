@@ -49,6 +49,7 @@ let winMessage = document.querySelector('h2')
 let betNum = document.querySelector('.bet span')
 let betUpButton = document.querySelector('#B-up')
 let betDownButton = document.querySelector('#B-down')
+let cashOut = document.querySelector('#quit')
 
 
 /*---------event listener---------*/
@@ -77,8 +78,19 @@ dealButton.addEventListener("click", mainGame)
 betUpButton.addEventListener("click", betFunction)
 betDownButton.addEventListener("click",betFunction)
 
+cashOut.addEventListener("click",quitFunction)
+
+
+
 
 /*---------functions---------*/ 
+function quitFunction() {
+  dealButton.disabled = true
+  betDownButton.disabled = true
+  betUpButton.disabled = true  
+  winMessage.textContent = `Congratulations you have won ${init.totalCredits+init.currentBet}
+Credits!`}
+
 function betFunction(e) {
   if(e.target.id == 'B-up'){
     init.currentBet++
