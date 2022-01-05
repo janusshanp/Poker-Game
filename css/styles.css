@@ -1,56 +1,66 @@
-.odds{
-    grid-area: odds;
-
+.master-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: green;
+    width: 53%;
+    margin: auto;
 }
-.win-display{
-    grid-area: win;
+
+.payout {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between
+}
+
+.hand {
+    display: flex;
+    justify-content: center;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.message, h1{
     text-align: center;
 }
-#message1 {
-    grid-area: message1;
-}
-#message2 {
-    grid-area:message2;
-}
-#message3 {
-    grid-area:message3;
-}
-#message4 {
-    grid-area:message4;
-}
-#message5 {
-    grid-area:message5;
-}
-#card1{
-    grid-area: card1;
-}
-#card2{
-    grid-area: card2;
-}
-#card3{
-    grid-area: card3;
-}
-#card4{
-    grid-area: card4;
-}
-#card5{
-    grid-area: card5;
-}
-.bet {
-    grid-area: bet;
+.message {
+    margin: 10px;
+    border: 2px solid blue;
 }
 
-.credits{
-    grid-area: credits;
+h1{
+    font-family: Tonight;
+    font-size: 60px;
 }
-.master-container{
-    background-color: lightblue;
-    display:grid;
-    grid-template-areas:
-        ". odds odds odds ."
-        "win win win win win "
-        "message1 message2 message3 message4 message5"
-        "card1 card2 card3 card4 card5"
-        "bet bet bet credits credits "
-    ;
+
+.odds {
+    text-align: center;
+}
+
+.win-display {
+    text-align: center;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+.info-parent{
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons{
+    justify-content: space-between;
+    display: flex;
+    background-color: grey;
+}
+.info{
+    font-size: 20px;
 }

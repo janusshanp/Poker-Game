@@ -45,7 +45,7 @@ init.betInput();
 let cardC = document.querySelectorAll('.card')
 let dealButton = document.querySelector('#Deal')
 let messageC = document.querySelectorAll('.message')
-let winMessage = document.querySelector('h2')
+let winMessage = document.querySelector('.win-display')
 let betNum = document.querySelector('.bet span')
 let betUpButton = document.querySelector('#B-up')
 let betDownButton = document.querySelector('#B-down')
@@ -63,7 +63,7 @@ function createEventListeners () {
       } 
       if (displayCards[cardID].selected){
         displayCards[cardID].selected = false
-        messageC[i].textContent ="Not Held"
+        messageC[i].textContent =""
       } else {
         displayCards[cardID].selected = true
         messageC[i].textContent ="Hold"
@@ -173,7 +173,7 @@ function totalBet () {
 function chooseCards (time) {
   let cardID = 'card' + (time+1)
   console.log(cardID)
-  cardC[time].classList.remove("back-blue")
+  cardC[time].classList.remove("back-red")
   if (displayCards[cardID].selected === false){
     if (displayCards[cardID].card !== ''){
     cardC[time].classList.remove(displayCards[cardID].card)
