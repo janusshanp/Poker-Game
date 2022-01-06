@@ -5,15 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Poker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Sacramento&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/cardstarter.css">
     <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/main.js"></script>
 </head>
 <body>
-    <h1>Video Poker</h1>
+    <div class="title">After Hours Casino</div>
+    <div class="init-modal">
+        <div class="modal-content">
+            <p>Welcome to the Casino! Prepare to become Rich!</p>
+            <p>Please enter your name and how much you would like to bet!</p>
+            <label>Name:</label>
+            <input type="text">
+            <label>Total Amount:</label>
+            <input type="number">
+            <button id="modal-submit">Submit</button>
+        </div>
+    </div>
     <div class = "master-container">
         <div class= "odds">
-            <div>Winning Odds based on Current Bet</div>
+            <div class="game-title">Jack's or Better</div>
+            <div class="odds-title">Winning Odds based on Current Bet</div>
             <div class="payout">
                 <div class="first-half">
                     <div>Royal Flush <span>250</span></div>
@@ -62,10 +75,10 @@
                 <div class ="credits">Total Credits: <span>0</span></div>
             </div>
             <div class="buttons">
-                <button id="B-up">Bet Up</button>
-                <button id="B-down">Bet Down</button>
-                <button id="quit">Cash Out</button>
-                <button id="Deal">Deal</button>
+                <button class="game-buttons" id="B-up">Bet Up</button>
+                <button class="game-buttons" id="B-down">Bet Down</button>
+                <button class="game-buttons" id="quit">Cash Out</button>
+                <button class="game-buttons" id="Deal">Deal</button>
             </div>
 
         </div>
