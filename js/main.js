@@ -64,9 +64,11 @@ function createEventListeners () {
       if (displayCards[cardID].selected){
         displayCards[cardID].selected = false
         messageC[i].textContent =""
+        cardC[i].classList.remove("outline")
       } else {
         displayCards[cardID].selected = true
         messageC[i].textContent ="Hold"
+        cardC[i].classList.add("outline")
       }
       console.log("clicked")
     })
@@ -209,7 +211,6 @@ function checkCards () {
     //since it converts into string?
     // there must be a way to do this without sorting so its easier and more dynamic?
     // try to clean up the code here 
-    finalCards.sort()
     //loop to seperate out the suits and values 
     for (card of finalCards) {
         finalCardsValues.push(parseInt(card[1]+card[2]))
