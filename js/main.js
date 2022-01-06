@@ -2,14 +2,46 @@
 let suits = ['H','S','D','C']
 let cardValues = ['02','03','04','05','06','07','08','09','10','11','12','13','14']
 
+// CREATE A CARD CLASS
+/**
+ *  class Card {
+ *    suits
+ *    Value;
+ * }
+ *
+ * class Deck {
+ *    listOfCards = [];
+ *    shuffle();
+ *    createDeck();
+ *    construct() {
+ *     createDeck();
+ *     shuffle();
+ *   }
+ * }
+ *
+ *
+ * card1 = new Card("Hearts", 2)
+ * card1.suit "H"
+ *
+ * let deck = [{Cards}, {Cards}.... 52]
+ * let dealtCards = [{Cards}, ..... 4]
+ */
+
 
 /*---------app's state (variables)---------*/
 
 //change so that it can have an input
-var firstPlay = false 
-var secondDeal = false 
-let win = 0
 
+// why do we use var instead of let
+// var is depreciated --> ES6 Javascript we use "let" and "const"
+
+//
+var firstPlay = false
+// we should probably use better naming convention -->
+var secondDeal = false
+// should probably call this winMoneyMultiplier
+let win = 0
+// name this something better --> dealtCards
 let displayCards = {
     card1: { card:"", selected: false },
     card2: { card:"", selected: false },
@@ -17,14 +49,28 @@ let displayCards = {
     card4: { card:"", selected: false },
     card5: { card:"", selected: false }
 }
+// definitely should do array approach
+// whenever we want to represent a "LIST" of somethign we use arrays
+/**
+ * let displayCards =
+ * [
+    { card:"", selected: false },
+    { card:"", selected: false },
+    { card:"", selected: false },
+    { card:"", selected: false },
+    { card:"", selected: false }
+ * ]
+      displayCard[0].selected = true;
+ */
 
-//change this location when you clean up your code 
+//change this location when you clean up your code
+
 let betCredits = document.querySelector('.credits span')
 
 let init = {
     cardDeck: [],
     totalCredits: 0,
-    currentBet: 0,    
+    currentBet: 0,
     betInput: function () {
       init.totalCredits = prompt("Enter Total Credits:")
       betCredits.textContent = init.totalCredits
@@ -32,11 +78,11 @@ let init = {
     currentBetInput: function () {
       betDisplay.textContent = "Current Bet: " + init.currentBet
       init.totalCredits = init.totalCredits - init.currentBet
-      betCredits.textContent = "Total Credits: "+ init.totalCredits      
+      betCredits.textContent = "Total Credits: "+ init.totalCredits
     },
     createDeck: function () {
         suits.forEach(suit => cardValues.forEach(value => init.cardDeck.push(suit.concat(value))))
-      }
+    }
 }
 
 init.betInput();
@@ -60,7 +106,7 @@ function createEventListeners () {
       let cardID = 'card'+[i+1]
       if(secondDeal){
         return
-      } 
+      }
       if (displayCards[cardID].selected){
         displayCards[cardID].selected = false
         messageC[i].textContent =""
@@ -73,7 +119,7 @@ function createEventListeners () {
   }
 }
 
-dealButton.addEventListener("click", mainGame) 
+dealButton.addEventListener("click", mainGame)
 
 betUpButton.addEventListener("click", betFunction)
 betDownButton.addEventListener("click",betFunction)
@@ -83,11 +129,11 @@ cashOut.addEventListener("click",quitFunction)
 
 
 
-/*---------functions---------*/ 
+/*---------functions---------*/
 function quitFunction() {
   dealButton.disabled = true
   betDownButton.disabled = true
-  betUpButton.disabled = true  
+  betUpButton.disabled = true
   winMessage.textContent = `Congratulations you have won ${init.totalCredits+init.currentBet}
 Credits!`}
 
@@ -124,7 +170,7 @@ function mainGame () {
     }
     },500)
     betUpButton.disabled = true
-    betDownButton.disabled =true 
+    betDownButton.disabled =true
   } else if (betUpButton.disabled && betDownButton.disabled){
       console.log("Hello")
       secondDeal = true
@@ -138,18 +184,21 @@ function mainGame () {
           clearInterval(interval)
           totalBet()
         }
-      },500) 
+      },500)
       betUpButton.disabled = false
       betDownButton.disabled = false
   } else if (secondDeal){
       console.log("ibanma")
       resetCards ()
-      mainGame () 
+      mainGame ()
 }
 }
 
+/**
+ * would be nice if we used a class called Card and then possibly a Deck class too
+ */
 function resetCards () {
-  let i = 0 
+  let i = 0
   for (cards in displayCards) {
     cardC[i].classList.remove(displayCards[cards].card)
     displayCards[cards].card = ""
@@ -158,26 +207,33 @@ function resetCards () {
     i++
   }
   init.cardDeck = []
-  win = 0 
-  secondDeal = false 
+  win = 0
+  secondDeal = false
 }
 
 function totalBet () {
   init.totalCredits = init.totalCredits + (win * init.currentBet)
   betCredits.textContent = init.totalCredits
-  betNum.textContent = 0 
-  init.currentBet = 0 
+  betNum.textContent = 0
+  init.currentBet = 0
 }
 
-//need to figure out how to stop duplicate cards in dealing  
+//need to figure out how to stop duplicate cards in dealing
 function chooseCards (time) {
   let cardID = 'card' + (time+1)
   console.log(cardID)
   cardC[time].classList.remove("back-red")
   if (displayCards[cardID].selected === false){
     if (displayCards[cardID].card !== ''){
-    cardC[time].classList.remove(displayCards[cardID].card)
+      cardC[time].classList.remove(displayCards[cardID].card)
     }
+    /**
+     * i create a deck class
+     * when i construct the class in the constructor i create an array of cards
+     * implement a shuffle method on the array of cards
+     * javascript has a shuffle method
+     * .pop() last one from array to get top of the deck
+     */
     let rInt = Math.floor(Math.random()*init.cardDeck.length)
     displayCards[cardID].card = init.cardDeck[rInt]
     cardC[time].classList.add(init.cardDeck[rInt])
@@ -186,39 +242,40 @@ function chooseCards (time) {
 }
 
 function checkCards () {
-    // winning conditions 
+    // winning conditions
     //has to be a bettter way to do this????????!?!?!?!?!?!
-    // state variables which we will manipulate in this function 
+    // state variables which we will manipulate in this function
     let finalCards =[]
     let finalCardsValues = []
     let finalCardsSuits =[]
     let fiveSuits = false
-    let valuesinOrder = false 
-    let fourPair = false 
+    let valuesinOrder = false
+    let fourPair = false
     let threePair = false
     let twoPair1 = false
     let twoPair2 = false
     let jacksorBetter = false
 
-    //for loop to push cards in object to an array to better maninpulate? 
+    //for loop to push cards in object to an array to better maninpulate?
     //do we even need to do this in a better method?
     for (cards in displayCards){
-        finalCards.push(displayCards[cards].card) 
+        finalCards.push(displayCards[cards].card)
     }
-    //sorting here because if sorted in for loop later it will put 10 infront 
+    //sorting here because if sorted in for loop later it will put 10 infront
     //since it converts into string?
     // there must be a way to do this without sorting so its easier and more dynamic?
-    // try to clean up the code here 
+    // try to clean up the code here
     finalCards.sort()
-    //loop to seperate out the suits and values 
+    //loop to seperate out the suits and values
     for (card of finalCards) {
         finalCardsValues.push(parseInt(card[1]+card[2]))
         finalCardsSuits.push(card[0])
     }
-    
-    finalCardsValues.sort((function(a,b){return a-b}))
 
-    //to tally up how many of a suit we have 
+    finalCardsValues.sort((function(a,b){return a-b}))
+    // finalCardsValue.sort();
+
+    //to tally up how many of a suit we have
     console.log(finalCardsSuits)
     console.log(finalCardsValues)
 
@@ -226,23 +283,40 @@ function checkCards () {
         acc[suit] = acc[suit] ? acc[suit] +1 : 1;
         return acc;
     }, {})
-    // to tally up how many of each number we have 
+
+    /**
+     * {
+     *  "H" : 3,
+     *  "S" : 2,
+     *
+     * }
+     */
+
+    // to tally up how many of each number we have
     let numberTally = finalCardsValues.reduce(function(acc,value){
         acc[value] = acc[value] ? acc[value] +1 : 1;
         return acc;
     }, {})
-    // to see if we have five of the same suits 
+
+    /**
+     * find a way for numberTally and suitTally to return an array of integers
+     * [1, 2, 2]  --> No 5
+     */
+
+
+    // to see if we have five of the same suits
     for (suit in suitTally){
         if (suitTally[suit]===5){
-          fiveSuits = true 
-          // what about every in a for loop? 
-        } 
+          fiveSuits = true
+          // what about every in a for loop?
+        }
     }
-    // to see how many of the values are either 4 of a kind, 3 of a kind, two pair or just 1 pair 
-    //also checks if jack or better is true 
+    // to see how many of the values are either 4 of a kind, 3 of a kind, two pair or just 1 pair
+    //also checks if jack or better is true
+    // [1,1,1,,1,1,1]
     for (num in numberTally){
         if (numberTally[num]===4){
-          fourPair = true 
+          fourPair = true
         }
          if (numberTally[num]===3){
           threePair = true
@@ -258,22 +332,25 @@ function checkCards () {
           twoPair2 = true
         }
     }
-    // to see if cards are in order 
+    // to see if cards are in order
     for (let i =0; i < 4; i ++){
       if (finalCardsValues[i+1]-finalCardsValues[i] === 1){
-        valuesinOrder = true 
+        //. name this something better
+        valuesinOrder = true
       } else {
-        valuesinOrder = false
+        // valuesinOrder = false
+        // you dont need this
         break
       }
     }
 
+    // break this into its own function
     if (valuesinOrder && fiveSuits && Math.min(...finalCardsValues)===10){
-        winMessage.textContent = "Royal Flush" 
+        winMessage.textContent = "Royal Flush"
         win = 250
       } else if (valuesinOrder && fiveSuits) {
         winMessage.textContent = "Straight Flush"
-        win = 50 
+        win = 50
       } else if (fourPair){
         winMessage.textContent = "Four Pair"
         win = 25
