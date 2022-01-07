@@ -1,7 +1,5 @@
 # Jacks or Better Poker
 
-Game Display
-
 User input
 <img src= "/images/User_Input.png">
 
@@ -13,7 +11,6 @@ User Screen after First Deal
 
 User Screen after Second Deal
 <img src= "/images/Final Deal.png">
-
 
 Game Rules
 - Player will determine how much to bet before they are dealt cards
