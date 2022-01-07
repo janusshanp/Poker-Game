@@ -197,6 +197,7 @@ function resetCards() {
   init.cardDeck = [];
   win = 0;
   secondDeal = false;
+  endOfTurnMessage.textContent = ''
 }
 
 function totalBet() {

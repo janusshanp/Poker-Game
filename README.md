@@ -64,6 +64,7 @@ Next Steps
     - add winning sound 
     - add casino background noise
 - Card Flipping Animation 
+- Need to work on color scheme of buttons and make sure it fills the page 
 
 
 
