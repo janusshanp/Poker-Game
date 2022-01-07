@@ -3,13 +3,16 @@
 Game Display
 
 User input
-<img src= "/images/User_Input.jpg">
+<img src= "/images/User_Input.png">
 
 User Screen before Player is Dealt Cards
+<img src= "/images/Game.png">
 
 User Screen after First Deal
+<img src= "/images/First Deal.png">
 
 User Screen after Second Deal
+<img src= "/images/Final Deal.png">
 
 
 Game Rules
