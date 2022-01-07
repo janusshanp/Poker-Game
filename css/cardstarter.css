@@ -20,30 +20,12 @@
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
+}
+.card .outline {
+  background-image: none;
+  /* background-color: rgba(195, 195, 195, 0.5); */
+  border: 0.15em dashed #daa520; }
   
-  /* Default sizes for cards (size based off the font). */
-  /* Optional styles for cards: borderless and drop shadow. */
-  /* Not a card, but a card-shaped outline to represent a
-     droppable place, like an empty pile. */ }
-
-
-  /* .card.small {
-    font-size: 12px; }
-  .card.large {
-    font-size: 26px; }
-  .card.xlarge {
-    font-size: 42px; }
-  .card.no-border {
-    border: 0; }
-  .card.shadow {
-    box-shadow: 2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
-  */  
-
-  .card.outline {
-    background-image: none;
-    /* background-color: rgba(195, 195, 195, 0.5); */
-    border: 0.15em dashed #daa520; }
-
 .card.D14 
  {
   background-image: url("../images/diamonds/diamonds-A.svg"); }
@@ -210,32 +192,3 @@
 .card.back-red {
   background-image: url("../images/backs/red.svg"); }
 
-/* Re-orients the cards for different directions. While
-   they are symmetric, it's still important to orient
-   them correctly in case text or other symbols are
-   layered on them with CSS pseudo-selectors, new
-   classes/rules, etc. */
-
-
-/* .card.west,
-.card.W {
-  transform: rotate(90deg);
-  margin: auto 0.75em; }
-  .card.west.shadow,
-  .card.W.shadow {
-    box-shadow: 2px -2px 3px 0 rgba(41, 41, 41, 0.75); }
-
-.card.north,
-.card.N {
-  transform: rotate(180deg); }
-  .card.north.shadow,
-  .card.N.shadow {
-    box-shadow: -2px -2px 3px 0 rgba(41, 41, 41, 0.75); }
-
-.card.east,
-.card.E {
-  transform: rotate(270deg);
-  margin: auto 0.75em; }
-  .card.east.shadow,
-  .card.E.shadow {
-    box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); } */
