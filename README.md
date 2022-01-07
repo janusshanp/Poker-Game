@@ -1,5 +1,17 @@
 # Jacks or Better Poker
 
+Game Display
+
+User input
+<img src= "/images/User_Input.jpg">
+
+User Screen before Player is Dealt Cards
+
+User Screen after First Deal
+
+User Screen after Second Deal
+
+
 Game Rules
 - Player will determine how much to bet before they are dealt cards
 - Player will be dealt 5 cards 
