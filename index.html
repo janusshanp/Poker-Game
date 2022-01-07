@@ -14,13 +14,13 @@
     <div class="title">After Hours Casino</div>
     <div class="init-modal">
         <div class="modal-content">
-            <p>Welcome to the Casino! Prepare to become Rich!</p>
+            <p>Welcome to the After Hours Casino! Prepare to become Rich!</p>
             <p>Please enter your name and how much you would like to bet!</p>
             <label>Name:</label>
-            <input type="text">
+            <input id="name-input" type="text">
             <label>Total Amount:</label>
-            <input type="number">
-            <button id="modal-submit">Submit</button>
+            <input id= "total-input" type="number">
+            <button>Submit</button>
         </div>
     </div>
     <div class = "master-container">
@@ -29,23 +29,24 @@
             <div class="odds-title">Winning Odds based on Current Bet</div>
             <div class="payout">
                 <div class="first-half">
-                    <div>Royal Flush <span>250</span></div>
-                    <div>Straight Flush <span>50</span></div>
-                    <div>Four of a Kind <span>25</span></div>
-                    <div>Full House <span>9</span></div>
-                    <div>Flush <span>6</span></div>
+                    <div>Royal Flush <span>250x</span></div>
+                    <div>Straight Flush <span>50x</span></div>
+                    <div>Four of a Kind <span>25x</span></div>
+                    <div>Full House <span>9x</span></div>
+                    <div>Flush <span>6x</span></div>
             </div>
                 <div class="second-half">
-                    <div>Straight <span>4</span></div>
-                    <div>Three of a Kind <span>3</span></div>
-                    <div>Two Pair <span>2</span></div>
-                    <div>Jacks or Better <span>1</span></div>
-                    <div>No Winning Combinations <span>0</span></div>
+                    <div>Straight <span>4x</span></div>
+                    <div>Three of a Kind <span>3x</span></div>
+                    <div>Two Pair <span>2x</span></div>
+                    <div>Jacks or Better <span>1x</span></div>
+                    <div>No Winning Combinations <span>0x</span></div>
                 </div> 
             </div> 
         </div>
         
         <div class="win-display">Jacks or Better!</div>
+        <div class="play-again"></div>
         
         <div class ="hand">
             <div class="cards">
@@ -71,8 +72,8 @@
         </div>
         <div class="info-parent">
             <div class="info">
-                <div class ="bet">Current Bet: <span>0</span></div>
-                <div class ="credits">Total Credits: <span>0</span></div>
+                <div class ="bet">Current Bet: <span> 0</span></div>
+                <div class ="credits">Total Credits: <span> 0</span></div>
             </div>
             <div class="buttons">
                 <button class="game-buttons" id="B-up">Bet Up</button>

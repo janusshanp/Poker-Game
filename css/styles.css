@@ -64,7 +64,7 @@ body {
 }
 
 .init-modal {
-    display: none; 
+    display: block; 
     position: fixed;
     z-index: 1; 
     left: 0;
@@ -82,6 +82,11 @@ body {
     border: 1px solid red;
     width: 50%; 
   }
+
+.modal-content button{
+    display: flex;
+    margin: auto; 
+}
    
 .master-container {
     display:flex;
@@ -100,8 +105,8 @@ body {
 }
 
 .first-half, .second-half{
-    flex-grow: 1;
     margin: 10px;
+    width: 50%;
 }
 
 span {
@@ -132,7 +137,7 @@ span {
     text-align: center;
 }
 
-.win-display {
+.win-display,.play-again {
     text-align: center;
 }
 
@@ -147,12 +152,21 @@ span {
 }
 
 .buttons{
+    padding: 10px;
     justify-content: space-between;
     display: flex;
     background-color: grey;
 }
 .info{
     font-size: 20px;
+}
+
+.credits, .odds {
+    margin-right: 13px;
+}
+
+.bet, .odds {
+    margin-left: 13px; 
 }
 
 .game-buttons {
